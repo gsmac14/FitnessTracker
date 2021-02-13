@@ -2,21 +2,22 @@
 
 //dependecies
 var path = require("path");
-
+const router = require("express").Router();
 //Routes
-module.exports = function(app) {
-    //index route loads home page
-    app.get("/", function(req, res){
-        res.sendFile(path.join(__dirname, "../public/index.html"));
-    });
 
-    //exercise route loads exercise page
-    app.get("/exercise", function(req, res){
-        res.sendFile(path.join(__dirname, "../public/exercise.html"));
-    });
+//index route loads home page
+router.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
-    //states route loads stats page
-    app.get("/stats", function(req, res){
-        res.sendFile(path.join(__dirname, "../public/stats.html"));
-    });
-};
+//exercise route loads exercise page
+router.get("/exercise", function (req, res) {
+  res.sendFile(path.join(__dirname, "../public/exercise.html"));
+});
+
+//states route loads stats page
+router.get("/stats", function (req, res) {
+  res.sendFile(path.join(__dirname, "../public/stats.html"));
+});
+
+module.exports = router;

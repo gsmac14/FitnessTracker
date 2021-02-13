@@ -23,19 +23,38 @@ router.put("/api/workouts/:id", ({body, params}, res) => {
     });
 });
 
-    router.get("/api/workouts", ({body}, res) => {
-        Workout.aggregate( [{
-            $addFields: {
-                weightTotal: { $sum: "$weight"}
-            }
+router.get("/api/workouts", ({body}, res) => {
+    Workout.aggregate( [{
+        $addFields: {
+            totalDuration: { $sum: "$exercises.duration"}
         }
-    ])
-        .sort({exercises: -1}).limit(7).then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.status(400).json(err);
-        });
+    }
+])
+.then(dbWorkout => {
+    res.json(dbWorkout);
+})
+    .catch(err => {
+        res.status(400).json(err);
+    });
+
 });
+
+router.get("/api/workouts/range", ({body}, res) => {
+    Workout.aggregate( [{
+        $addFields: {
+            totalDuration: { $sum: "$exercises.duration"}
+        }
+    }
+])
+.sort({_id: -1}).limit(7).then(dbWorkout => {
+    res.json(dbWorkout);
+})
+    .catch(err => {
+        res.status(400).json(err);
+    });
+
+});
+
+
 
 module.exports = router;
