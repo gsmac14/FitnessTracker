@@ -24,8 +24,13 @@ router.put("/api/workouts/:id", ({body, params}, res) => {
 });
 
     router.get("/api/workouts", ({body}, res) => {
-        Workout.find(body)
-        .then(dbWorkout => {
+        Workout.aggregate( [{
+            $addFields: {
+                weightTotal: { $sum: "$weight"}
+            }
+        }
+    ])
+        .sort({exercises: -1}).limit(7).then(dbWorkout => {
             res.json(dbWorkout);
         })
         .catch(err => {
