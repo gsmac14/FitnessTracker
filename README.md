@@ -12,9 +12,9 @@
   * [Contact](#contact)
   
   ## Description
-  	This project was created for users to track daily workouts. The tracker will log name, type, weith, sets, reps, and duration of exercise. If the exercise is a cardio exercise it will track the distance traveled. The application used MongoDB, Mongoose, and Express to handle routes. 
+  This project was created for users to track daily workouts. The tracker will log name, type, weith, sets, reps, and duration of exercise. If the exercise is a cardio exercise it will track the distance traveled. The application used MongoDB, Mongoose, and Express to handle routes. 
 
-       ![Alt text](/Fitness.png)
+  ![Alt text](/Fitness.png)
 
   ## Technologies
   MongoDB Atlas, Heroku, Express, Mongoose Schema
